@@ -3,13 +3,18 @@
 
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios';
 
 Vue.use(Vuex);
 
+const nauticaAPI = axios.create({
+  baseURL:'http://localhost:10010'
+})
+ 
 const store = new Vuex.Store({
     state: {
       searchString:null,  
-      movies: [],
+      movies: null,
       hasVoted: false
     },
     mutations: {
@@ -31,6 +36,12 @@ const store = new Vuex.Store({
                 commit('movies',result.data.Search)
                 commit('search',query)
             }) 
+        },
+        vote({commit},query){
+            console.log("voy a votar" , query)
+            nauticaAPI.post('/vote',query).then(result=>{
+                console.log(result);
+            })
         }
     },
     getters:{

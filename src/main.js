@@ -7,8 +7,6 @@ import router from './router/router'
 import store from './store/store'
 
 Vue.use(VueAxios,axios);
-
-
 Vue.config.productionTip = false
 
 Vue.axios.defaults.baseURL = 'http://www.omdbapi.com/?apikey=682d1170&s='
